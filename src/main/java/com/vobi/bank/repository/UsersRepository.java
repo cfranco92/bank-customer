@@ -6,8 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.vobi.bank.domain.Users;
 
-public interface UsersRepository extends JpaRepository<Users, Integer> {
-	List<Users> findByEnable(String enable);
-
-	List<Users> findByNameLike(String name);
+public interface UsersRepository extends JpaRepository<Users, String> {
+	List<Users> findByUserEmail(String userEmail);
 }
