@@ -80,20 +80,20 @@ public class UsersServiceImpl implements UsersService {
 	public void delete(Users entity) throws Exception {
 
 		if (entity == null) {
-			throw new Exception("El customer es nulo");
+			throw new Exception("El usuario es nulo");
 		}
 
 		if (entity.getUserEmail() == null) {
-			throw new Exception("El customer id es nulo");
+			throw new Exception("El usuario id es nulo");
 		}
 
 		if (usersRepository.existsById(entity.getUserEmail()) == false) {
-			throw new Exception("El customer no existe");
+			throw new Exception("El usuario no existe");
 		}
 
 		findById(entity.getUserEmail()).ifPresent(user -> {
 			if (user.getTransactions() != null && user.getTransactions().isEmpty() == false) {
-				throw new RuntimeException("El customer tiene transacciones asociadas");
+				throw new RuntimeException("El usuario tiene transacciones asociadas");
 			}
 		});
 
@@ -108,7 +108,7 @@ public class UsersServiceImpl implements UsersService {
 			throw new Exception("El id es nulo");
 
 		if (usersRepository.existsById(id) == false) {
-			throw new Exception("El customer no existe");
+			throw new Exception("El usuario no existe");
 		}
 
 		delete(usersRepository.findById(id).get());
