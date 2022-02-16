@@ -13,9 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.vobi.bank.domain.Customer;
 import com.vobi.bank.domain.Users;
-import com.vobi.bank.repository.CustomerRepository;
 import com.vobi.bank.repository.UsersRepository;
 
 @Service
