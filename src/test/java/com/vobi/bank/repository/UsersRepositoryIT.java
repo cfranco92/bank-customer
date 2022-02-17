@@ -2,6 +2,8 @@ package com.vobi.bank.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Optional;
+
 //import java.util.List;
 //import java.util.Optional;
 
@@ -24,10 +26,10 @@ import com.vobi.bank.domain.Users;
 @TestMethodOrder(OrderAnnotation.class)
 //@Slf4j
 class UsersRepositoryIT {
-	
+
 	@Autowired
 	UsersRepository usersRepository;
-	
+
 	@Autowired
 	UserTypeRepository userTypeRepository;
 
@@ -37,74 +39,74 @@ class UsersRepositoryIT {
 		assertNotNull(usersRepository);
 		assertNotNull(userTypeRepository);
 	}
-	
+
 	@Test
 	@Order(2)
 	void debeCrearUnUsuario() {
-		//Arrange
-		Integer idUserType=3;
-		String idUser="cfrancobedoya@gmail.com";
-		
-		Users user=null;
-		UserType userType=userTypeRepository.findById(idUserType).get();
-		
-		user=new Users();
+		// Arrange
+		Integer idUserType = 3;
+		String idUser = "cfrancobedoya@gmail.com";
+
+		Users user = null;
+		UserType userType = userTypeRepository.findById(idUserType).get();
+
+		user = new Users();
 		user.setUserEmail(idUser);
 		user.setName("Cristian Franco");
 		user.setToken(null);
 		user.setEnable("Y");
 		user.setUserType(userType);
-		
-		//Act
-		
-		user=usersRepository.save(user);
-		
-		//Assert
-		
-		assertNotNull(user,"El usuario es nulo no se pudo grabar");
+
+		// Act
+
+		user = usersRepository.save(user);
+
+		// Assert
+
+		assertNotNull(user, "El usuario es nulo no se pudo grabar");
 	}
-	
+
 	@Test
 	@Order(3)
 	void debeModificarUnUsuario() {
-		//Arrange
-		String idUser="cfrancobedoya@gmail.com";
-		Users user=null;
-		
-		user=usersRepository.findById(idUser).get();
+		// Arrange
+		String idUser = "cfrancobedoya@gmail.com";
+		Users user = null;
+
+		user = usersRepository.findById(idUser).get();
 		user.setEnable("N");
-		
-		//Act
-		
-		user=usersRepository.save(user);
-		
-		//Assert
-		
-		assertNotNull(user,"El user es nulo no se pudo modificar");
+
+		// Act
+
+		user = usersRepository.save(user);
+
+		// Assert
+
+		assertNotNull(user, "El user es nulo no se pudo modificar");
 	}
-	
-//	@Test
-//	@Order(4)
-//	void debeBorrarUnCustomer() {
-//		//Arrange
-//		
-//		Integer idCustomer=14836554;
-//		Customer customer=null;
-//		Optional<Customer> customerOptional=null;
-//		
-//		assertTrue(customerRepository.findById(idCustomer).isPresent(),"No encontro el customer");
-//		
-//		customer=customerRepository.findById(idCustomer).get();
-//		
-//		//Act
-//		customerRepository.delete(customer);
-//		customerOptional=customerRepository.findById(idCustomer);
-//		
-//		//Assert
-//		
-//		assertFalse(customerOptional.isPresent(),"No pudo borrar el customer");
-//	}
-	
+
+	@Test
+	@Order(4)
+	void debeBorrarUnUser() {
+		// Arrange
+
+		String idUser = "cfrancobedoya@gmail.com";
+		Users user = null;
+		Optional<Users> userOptional = null;
+
+		assertTrue(usersRepository.findById(idUser).isPresent(), "No encontro el user");
+
+		user = usersRepository.findById(idUser).get();
+
+		// Act
+		usersRepository.delete(user);
+		userOptional = usersRepository.findById(idUser);
+
+		// Assert
+
+		assertFalse(userOptional.isPresent(), "No pudo borrar el user");
+	}
+
 //	@Test
 //	@Order(5)
 //	void debeConsultarTodosLosCustomers() {
@@ -121,7 +123,5 @@ class UsersRepositoryIT {
 //		
 //		assertFalse(customers.isEmpty(),"No consulto Customers");	
 //	}
-	
-	
-	
+
 }
