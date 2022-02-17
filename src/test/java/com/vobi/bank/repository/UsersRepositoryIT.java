@@ -2,10 +2,8 @@ package com.vobi.bank.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import java.util.Optional;
-
-//import java.util.List;
-//import java.util.Optional;
 
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -17,14 +15,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.vobi.bank.domain.UserType;
 import com.vobi.bank.domain.Users;
 
-//import com.vobi.bank.domain.Customer;
-//import com.vobi.bank.domain.DocumentType;
-
-//import lombok.extern.slf4j.Slf4j;
+import lombok.extern.slf4j.Slf4j;
 
 @SpringBootTest
 @TestMethodOrder(OrderAnnotation.class)
-//@Slf4j
+@Slf4j
 class UsersRepositoryIT {
 
 	@Autowired
@@ -107,21 +102,21 @@ class UsersRepositoryIT {
 		assertFalse(userOptional.isPresent(), "No pudo borrar el user");
 	}
 
-//	@Test
-//	@Order(5)
-//	void debeConsultarTodosLosCustomers() {
-//		//Arrange
-//		List<Customer> customers=null;
-//		
-//		//Act
-//		
-//		customers=customerRepository.findAll();
-//		
-//		customers.forEach(customer->log.info(customer.getName()));		
-//		
-//		//Assert
-//		
-//		assertFalse(customers.isEmpty(),"No consulto Customers");	
-//	}
+	@Test
+	@Order(5)
+	void debeConsultarTodosLosUsers() {
+		// Arrange
+		List<Users> users = null;
+
+		// Act
+
+		users = usersRepository.findAll();
+
+		users.forEach(user -> log.info(user.getName()));
+
+		// Assert
+
+		assertFalse(users.isEmpty(), "No consulto Users");
+	}
 
 }
