@@ -64,26 +64,24 @@ class UsersRepositoryIT {
 		assertNotNull(user,"El usuario es nulo no se pudo grabar");
 	}
 	
-//	@Test
-//	@Order(3)
-//	void debeModificarUnCustomer() {
-//		//Arrange
-//		
-//		Integer idCustomer=14836554;
-//		Customer customer=null;
-//		
-//		
-//		customer=customerRepository.findById(idCustomer).get();
-//		customer.setEnable("N");
-//		
-//		//Act
-//		
-//		customer=customerRepository.save(customer);
-//		
-//		//Assert
-//		
-//		assertNotNull(customer,"El customer es nulo no se pudo modificar");
-//	}
+	@Test
+	@Order(3)
+	void debeModificarUnUsuario() {
+		//Arrange
+		String idUser="cfrancobedoya@gmail.com";
+		Users user=null;
+		
+		user=usersRepository.findById(idUser).get();
+		user.setEnable("N");
+		
+		//Act
+		
+		user=usersRepository.save(user);
+		
+		//Assert
+		
+		assertNotNull(user,"El user es nulo no se pudo modificar");
+	}
 	
 //	@Test
 //	@Order(4)
